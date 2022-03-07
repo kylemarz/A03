@@ -21,17 +21,11 @@
 
            <!--controller for mobile phone in VR mode --> 
             <a-camera>
-                <a-cursor cursor="fuse: true; fuseTimeout: 2000" position="0 0 -1" 
-                        geometry="primitive: circle; radius: 0.005"  
-                        material="color:black; shader: flat; opacity: 0.5">
-                        <a-animation attribute="radius"  
-                                to="0.5" 
-                                dur="1500" 
-                                begin="cursor-fusing" 
-                                fill="backwards" 
-                                easing="linear">
-                        </a-animation>
-                </a-cursor> 
+                <a-cursor cursor="fuse: true; fuseTimeout: 1500" position="0 0 -0.5" geometry="primitive: sphere; radius: 0.008"
+                    material="color:black; shader: flat; opacity: 0.5"
+                    animation="property: scale; to: 3 3 3; startEvents: cursor-fusing; dur: 1500; fill: backwards; easing: linear">
+            
+                </a-cursor>
             </a-camera>
 
             <!-- Green box primitives -->
