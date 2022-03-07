@@ -32,7 +32,7 @@
                 socket.on('color_change', (data) => {
                     let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
                     console.log('color_change:' + colorStr);
-                    //document.body.style.backgroundColor = colorStr;
+                    document.body.style.backgroundColor = colorStr;
                 });
             });
 
