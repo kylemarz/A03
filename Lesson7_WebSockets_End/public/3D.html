@@ -18,6 +18,13 @@
 
             <a-entity class="ground"  geometry="primitive:plane; width:14; height:14;" material="color:white;" position="0 0.01 0" rotation="-90 0 0"></a-entity>
 
+            
+            <a-camera>
+                <a-cursor cursor="fuse: true; fuseTimeout: 2000">
+                    
+                </a-cursor>
+            </a-camera>
+
             <!-- red button -->
             <a-entity id="red_button" position="2 0.6 -1">
                 <a-entity class="button interactive" position="0 0.6 0" geometry="primitive:cylinder; radius:0.15; height:0.2;" material="color:rgb(255, 100, 100)"
