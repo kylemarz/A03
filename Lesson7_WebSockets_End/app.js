@@ -4,6 +4,7 @@ const http      = require('http');
 const server    = require('http').createServer(app);  
 const io        = require('socket.io')(server);
 
+
 const LISTEN_PORT   = 8080;
 
 server.listen(LISTEN_PORT);
@@ -41,6 +42,11 @@ io.on('connection', (socket) => {
     socket.on("blue", (data) => {
         console.log( "blue event received" );
         io.sockets.emit("color_change", {r:0, g:0, b:255});
+    });
+
+    socket.on("green", (data) => {
+        console.log( "green event received" );
+        io.sockets.emit("color_change", {r:0, g:250, b:0});
     });
 
     //infinite loop with a millisecond delay (but only want one loop running ...)

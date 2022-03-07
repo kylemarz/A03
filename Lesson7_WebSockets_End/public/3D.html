@@ -12,20 +12,36 @@
         <!-- <button id="red" style="background-color:rgb(255, 0, 0); color:rgb(255, 255, 255)">RED</button>
         <button id="blue" style="background-color:rgb(0, 0, 255); color:rgb(255, 255, 255)">BLUE</button> -->
 
-        <a-scene background="color:rgb(0, 0, 0);">
+        <a-scene background="color:rgb(80, 80, 80);" antialias="true">
             <a-entity camera wasd-controls look-controls position="0 1.6 0">
                 <a-entity cursor="rayOrigin:mouse;" raycaster="far:20; interval:200; objects:.interactive"></a-entity>
             </a-entity>
 
-            <a-entity class="ground"  geometry="primitive:plane; width:14; height:14;" material="color:white;" position="0 0.01 0" rotation="-90 0 0"></a-entity>
+            <a-entity class="ground"  geometry="primitive:plane; width:14; height:14;" material="color:grey;" position="0 0.01 0" rotation="-90 0 0"></a-entity>
 
-            
+           <!--controller for mobile phone in VR mode --> 
             <a-camera>
-                <a-cursor cursor="fuse: true; fuseTimeout: 2000">
-                    
-                </a-cursor>
+                <a-cursor cursor="fuse: true; fuseTimeout: 2000" position="0 0 -1" 
+                        geometry="primitive: circle; radius: 0.005"  
+                        material="color:black; shader: flat; opacity: 0.5">
+                        <a-animation attribute="radius"  
+                                to="0.5" 
+                                dur="1500" 
+                                begin="cursor-fusing" 
+                                fill="backwards" 
+                                easing="linear">
+                        </a-animation>
+                </a-cursor> 
             </a-camera>
 
+            <!-- Green box primitives -->
+            <a-entity id="green_box" position="0 0.7 -2">
+                <a-entity class="button interactive" position="0 0 0" geometry="primitive:box; width:0.5; depth:0.5; height:0.6;" material="color:rgb(100, 255, 100)" shadow
+                    animation__mouseenter="property:material.color; type:color; to:rgb(0, 255, 0); startEvents:mouseenter; dur:200"
+                    animation__mouseleave="property:material.color; type:color; to:rgb(100, 255, 100); startEvents:mouseleave; dur:200">
+                </a-entity>
+            </a-entity>
+            
             <!-- red button -->
             <a-entity id="red_button" position="2 0.6 -1">
                 <a-entity class="button interactive" position="0 0.6 0" geometry="primitive:cylinder; radius:0.15; height:0.2;" material="color:rgb(255, 100, 100)"
@@ -63,6 +79,10 @@
 
                 document.querySelector('#blue_button').querySelector('.button').addEventListener('click', function(){
                     socket.emit('blue');
+                });
+
+                document.querySelector('#green_box').querySelector('.button').addEventListener('click', function(){
+                    socket.emit('green');
                 });
             });
 
