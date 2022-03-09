@@ -12,7 +12,7 @@
         <!-- <button id="red" style="background-color:rgb(255, 0, 0); color:rgb(255, 255, 255)">RED</button>
         <button id="blue" style="background-color:rgb(0, 0, 255); color:rgb(255, 255, 255)">BLUE</button> -->
 
-        <a-scene background="color:rgb(80, 80, 80);" antialias="true">
+        <a-scene background="color:rgb(80, 80, 80);" antialias="true" >
             <a-entity camera wasd-controls look-controls position="0 1.6 0">
                 <a-entity cursor="rayOrigin:mouse;" raycaster="far:20; interval:200; objects:.interactive"></a-entity>
             </a-entity>
@@ -22,9 +22,9 @@
            <!--controller for mobile phone in VR mode --> 
             <a-camera>
                 <a-cursor cursor="fuse: true; fuseTimeout: 1500" position="0 0 -0.5" geometry="primitive: sphere; radius: 0.008"
-                    material="color:black; shader: flat; opacity: 0.5"
-                    animation="property: scale; to: 3 3 3; startEvents: cursor-fusing; dur: 1500; fill: backwards; easing: linear">
-            
+                    material="color:black; shader: flat; opacity: 0.5"> 
+                    <!-- <a-animation attribute="material.color" from="black" to="white" dur="1500" fill="backwards" begin="cursor-fusing"></a-animation> -->
+
                 </a-cursor>
             </a-camera>
 
