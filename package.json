@@ -1,7 +1,29 @@
 {
   "name": "a03",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
+  "dependencies": {
+    "accepts": "^1.3.8",
+    "base64id": "^2.0.0",
+    "component-emitter": "^1.3.0",
+    "cors": "^2.8.5",
+    "engine.io": "^6.1.3",
+    "debug": "^4.3.3",
+    "cookie": "^0.4.2",
+    "engine.io-parser": "^5.0.3",
+    "mime-types": "^2.1.34",
+    "mime-db": "^1.51.0",
+    "ms": "^2.1.2",
+    "object-assign": "^4.1.1",
+    "negotiator": "^0.6.3",
+    "socket.io": "^4.4.1",
+    "socket.io-adapter": "^2.3.3",
+    "socket.io-parser": "^4.0.4",
+    "vary": "^1.1.2",
+    "ws": "^8.2.3"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,10 +36,5 @@
   "bugs": {
     "url": "https://github.com/kylemarz/A03/issues"
   },
-  "homepage": "https://github.com/kylemarz/A03#readme",
-  "dependencies": {
-    "socket.io": "^4.4.1"
-  },
-  "devDependencies": {},
-  "description": ""
+  "homepage": "https://github.com/kylemarz/A03#readme"
 }
