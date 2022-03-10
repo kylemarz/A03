@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Assignment 03 multi User </title>
+        <title>2D POV COLAB</title>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="/public/css/layout.css">
+        <link rel="stylesheet" href="css/layout.css">
     </head>
 
     <body>
         <!--this is my code -->
         <!-- our buttond to tell others -->
         
-        <button id="red" style="background-color:rgb(255, 0, 0); color:rgb(255, 255, 255)">RED</button>
+        <br><button id="red" style="background-color:rgb(255, 0, 0); color:rgb(255, 255, 255);position: absolute; left: 40%; transform: translateX(-50%);">Circle</button>
        
-        <button id="blue" style="background-color:rgb(0, 0, 255); color:rgb(255, 255, 255)">BLUE</button>
+        <button id="blue" style="background-color:rgb(0, 0, 255); color:rgb(255, 255, 255);position: absolute; left: 50%; transform: translateX(-50%);">Square</button>
         
-        <button id="green" style="background-color:rgb(0, 255, 0); color:rgb(255, 255, 255)">GREEN</button>
+        <button id="green" style="background-color:rgb(0, 255, 0); color:rgb(255, 255, 255);position: absolute; left: 60%; transform: translateX(-50%);">Triangle</button>
 
-        <!-- this is magic code created when the node server runs -->
+        <div class="circle" ></div>
+        <div class="square"></div>
+        <div class="triangle"></div>
+
+
+                <!-- this is magic code created when the node server runs -->
         <!-- //VERY HANDY! https://socket.io/docs/v3/emit-cheatsheet/  -->
         <script src="/socket.io/socket.io.js"></script>
         <script>
