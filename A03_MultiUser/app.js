@@ -4,6 +4,8 @@ const http      = require('http');
 const server    = require('http').createServer(app);  
 const io        = require('socket.io')(server);
 
+var cupNum2D = 0;
+var cupNum3D = 0;
 
 const LISTEN_PORT   = 8080;
 
@@ -34,20 +36,68 @@ io.on('connection', (socket) => {
         console.log( socket.id + " disconnected" );
     });
 
-    socket.on("red", (data) => {
-        console.log( "red event received" );
-        io.sockets.emit("color_change", {r:255, g:0, b:0});
+    
+
+    socket.on("cup1", (data) => {
+        console.log( "cup 1 chosen" );
+        io.sockets.emit("cup1");
+        cupNum2D = 1;
     });
 
-    socket.on("blue", (data) => {
-        console.log( "blue event received" );
-        io.sockets.emit("color_change", {r:0, g:0, b:255});
+    socket.on("cup2", (data) => {
+        console.log( "cup 2 chosen" );
+        io.sockets.emit("cup2");
+        cupNum2D = 2;
     });
 
-    socket.on("green", (data) => {
-        console.log( "green event received" );
-        io.sockets.emit("color_change", {r:0, g:250, b:0});
+    socket.on("cup3", (data) => {
+        console.log( "cup 3 chosen" );
+        io.sockets.emit("cup3");
+        cupNum2D = 3;
     });
+
+    socket.on("cup11", (data) => {
+        console.log( "cup 1 chosen" );
+        io.sockets.emit("cup11");
+        cupNum3D = 1;
+        console.log("this is cupNum3D:" + cupNum3D);
+        console.log("this is cupNum2D:" + cupNum2D);
+        myFunction();
+    });
+
+    socket.on("cup22", (data) => {
+        console.log( "cup 2 chosen" );
+        io.sockets.emit("cup22");
+        cupNum3D = 2;
+        console.log("this is cupNum3D:" + cupNum3D);
+        console.log("this is cupNum2D:" + cupNum2D);
+        myFunction();
+    });
+
+    socket.on("cup33", (data) => {
+        console.log( "cup 3 chosen" );
+        io.sockets.emit("cup33");
+        cupNum3D = 3;
+        console.log("this is cupNum3D:" + cupNum3D);
+        console.log("this is cupNum2D:" + cupNum2D);
+        myFunction();
+    });
+
+    socket.on("resetGame", (data) => {
+        console.log( "reset game selected" );
+        io.sockets.emit("resetGame");
+    });
+
+
+    
+
+    function myFunction() {
+        if (cupNum2D == cupNum3D){
+        console.log("winner");
+       io.sockets.emit('winner');
+    }};
+
+    
 
     //infinite loop with a millisecond delay (but only want one loop running ...)
     //a way to update all clients simulatenously every frame i.e. updating position, rotation ...

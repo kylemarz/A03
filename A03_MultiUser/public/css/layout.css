@@ -1,32 +1,25 @@
 
 body {
-   background-color: aquamarine;
+   background-color: gray;
 }
 
 head {
    background-color: aquamarine;
 }
 
-.circle {
-   
-   height: 50px;
-   width: 50px;
-   background-color:blueviolet;
-   border-radius: 50%;
-   
+button {
+   background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 25px;
 }
 
-.square {
-   height: 50px;
-   width: 50px;
-   background-color: brown;
 
-}
-
-.triangle {
-   width: 0;
-	height: 0;
-	border-left: 25px solid transparent;
-	border-right: 25px solid transparent;
-	border-bottom: 50px solid rgb(43, 43, 43);
+h1 {
+   color: black;
+   text-align: center;
 }
