@@ -1,55 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Assignment 03 multi User</title>
+        <title>3D POV - Cup Game player</title>
         <meta charset="utf-8" />
         <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
         <!--<script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v1.16.0/dist/aframe-extras.min.js"></script>-->
         
     </head>
 
-  
-
-    <script>
-        
-        AFRAME.registerComponent('collison-check', {
-          schema: {
-            el: {
-              type: 'selector'
-            },
-            radius: {
-              default: 0
-            },
-            otherRadius: {
-              default: 0
-            },
-            score:{
-              type: 'int',
-              default: 0
-            },
-            colliding:{
-              default: false
-            }
-          },
-          tick: function () {
-            var el1 = this.el;
-            var el2 = this.data.el;
-            var dist = el1.object3D.getWorldPosition().distanceTo(el2.object3D.getWorldPosition());
-            var entity = document.querySelector('#score');
-            if (dist < this.data.radius + this.data.otherRadius) {
-              if (!this.data.colliding){
-                this.data.score++;
-                this.data.colliding = true;
-                entity.emit('updateScore');
-                AFRAME.utils.entity.setComponentProperty(entity, 'text.value', "score \n" + this.data.score);
-              }
-            } else {
-              this.data.colliding = false;
-            }
-          }
-        });
-      </script>
-
+    
     <body>
            
         <a-scene background="color:rgb(80, 80, 80);" antialias="true" >
@@ -58,7 +17,7 @@
             </a-entity>
 
 
-            <a-entity class="ground"  geometry="primitive:plane; width:14; height:14;" material="color:grey;" position="0 0.01 -3" rotation="-90 0 0"></a-entity>
+            <a-entity class="ground"  geometry="primitive:plane; width:8; height:8;" material="color:grey;" position="0 0.01 -3" rotation="-90 0 0"></a-entity>
     
            <!--controller for mobile phone in VR mode --> 
             <a-camera>
@@ -108,9 +67,6 @@
             
         </a-scene>
 
-        <!-- this is magic code created when the node server runs -->
-        <!-- putting at teh bottom of body to let body load first before we try to query for elements -->
-        <!-- //VERY HANDY! https://socket.io/docs/v3/emit-cheatsheet/  -->
         <script src="/socket.io/socket.io.js"></script>
         <script>
             const socket = io();
@@ -137,6 +93,7 @@
             });
 
             //listen to event from server
+            // repostioning ball to 2D player's chosen cup 
             socket.on('cup1', () => {
                 
                 document.querySelector('#ball').setAttribute('position', {x:-2, y:0.2, z:-3})
@@ -161,7 +118,7 @@
                 
             });
 
-
+            // making the sign say "winner" if a win occurs 
             socket.on('winner', () => {
                 
                 document.querySelector('#score').setAttribute('text', 'value: winner' )

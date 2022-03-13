@@ -4,6 +4,7 @@ const http      = require('http');
 const server    = require('http').createServer(app);  
 const io        = require('socket.io')(server);
 
+// variables to keep track of score and which cup is chosen
 var cupNum2D = 0;
 var cupNum3D = 0;
 
@@ -37,7 +38,9 @@ io.on('connection', (socket) => {
     });
 
     
+//reads in input from server, outputs new data to server 
 
+// 2D - html stuff 
     socket.on("cup1", (data) => {
         console.log( "cup 1 chosen" );
         io.sockets.emit("cup1");
@@ -56,12 +59,12 @@ io.on('connection', (socket) => {
         cupNum2D = 3;
     });
 
+    // 3D - html stuff 
+
     socket.on("cup11", (data) => {
         console.log( "cup 1 chosen" );
         io.sockets.emit("cup11");
         cupNum3D = 1;
-        console.log("this is cupNum3D:" + cupNum3D);
-        console.log("this is cupNum2D:" + cupNum2D);
         myFunction();
     });
 
@@ -69,8 +72,6 @@ io.on('connection', (socket) => {
         console.log( "cup 2 chosen" );
         io.sockets.emit("cup22");
         cupNum3D = 2;
-        console.log("this is cupNum3D:" + cupNum3D);
-        console.log("this is cupNum2D:" + cupNum2D);
         myFunction();
     });
 
@@ -78,11 +79,10 @@ io.on('connection', (socket) => {
         console.log( "cup 3 chosen" );
         io.sockets.emit("cup33");
         cupNum3D = 3;
-        console.log("this is cupNum3D:" + cupNum3D);
-        console.log("this is cupNum2D:" + cupNum2D);
         myFunction();
     });
 
+    // game reset button 
     socket.on("resetGame", (data) => {
         console.log( "reset game selected" );
         io.sockets.emit("resetGame");
@@ -90,21 +90,10 @@ io.on('connection', (socket) => {
 
 
     
-
+// score function 
     function myFunction() {
         if (cupNum2D == cupNum3D){
         console.log("winner");
        io.sockets.emit('winner');
     }};
-
-    
-
-    //infinite loop with a millisecond delay (but only want one loop running ...)
-    //a way to update all clients simulatenously every frame i.e. updating position, rotation ...
-    // if (setIntervalFunc == null) {
-    //     console.log("setting interval func");
-    //     setIntervalFunc = setInterval( () => {
-    //         //if we want to do loops 
-    //     }, 50);
-    // }
 });
